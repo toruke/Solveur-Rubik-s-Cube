@@ -9,8 +9,6 @@ int pinServ3b = 7;
 int pinServ4a = 8;
 int pinServ4b = 9;
 
-
-
 /////////////////// Calibrate Servo parameters //////////////
 int gan1b = 170;  // close // forward
 int gan2b = 170;
@@ -32,12 +30,10 @@ int ngang2a = 122;
 int ngang3a = 70;
 int ngang4a = 123;
 
-/////////////////// Calibrate Servo parameters //////////////
-
-
-
-
-
+/////////////////// Delay time //////////////
+int normal_time = 200; //for every other move
+int time1 = 100; //time variable for 2 servos move forward to hold & 2 servos move backward (almost) at the same time
+int time2 = 50; //time variable for a servo rotate & move backward/move forward & rotate in (almost) one move
 
 // Variables
 String data = "";
