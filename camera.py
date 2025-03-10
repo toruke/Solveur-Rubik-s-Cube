@@ -1,9 +1,10 @@
 import cv2
 import numpy as np
+import kociemba
 
 # Définition des plages de couleurs en HSV
 color_ranges = {
-    "Blanc": ((0, 0, 180), (180, 50, 255)),
+    "Blanc": ((140, 130, 100), (170, 160, 160)),
     "Jaune": ((20, 100, 100), (40, 255, 255)),
     "Rouge": ((0, 100, 100), (10, 255, 255)),
     "Bleu": ((100, 100, 100), (130, 255, 255)),
@@ -21,7 +22,7 @@ def detect_color(bgr):
         if np.all(lower <= hsv) and np.all(hsv <= upper):
             return name
 
-    return "Inconnu"  # Si aucune couleur ne correspond
+    return "Blanc"  # Si aucune couleur ne correspond
 
 # Ouvrir la webcam
 vid = cv2.VideoCapture(0)
@@ -59,8 +60,35 @@ vid.release()
 cv2.destroyAllWindows()
 
 # Affichage des couleurs détectées
+str = ""
+
 for i, face in enumerate(rubik):
-    print(f"Face {i + 1}:")
     for j, color in enumerate(face):
         detected_color = detect_color(color)
-        print(f"  Case {j + 1}: {detected_color} - BGR: {color}")
+        if detected_color == "Blanc":
+            str += "U"
+        if detected_color == "Jaune":
+            str += "D"
+        if detected_color == "Rouge":
+            str += "R"
+        if detected_color == "Bleu":
+            str += "B"
+        if detected_color == "Vert":
+            str += "F"
+        if detected_color == "Orange":
+            str += "L"
+        #print(f"  Case {j + 1}: {detected_color} - BGR: {color}")
+
+print(str)
+solution = kociemba.solve("")
+print("Solution:", solution)
+
+
+"""
+U (Up) = White 
+D (Down) = Yellow 
+R (Right) = Red 
+L (Left) = Orange 
+F (Front) = Green 
+B (Back) = Blue 
+"""
