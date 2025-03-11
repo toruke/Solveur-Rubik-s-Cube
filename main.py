@@ -5,29 +5,18 @@ import cv2
 import kociemba
 import numpy as np
 
-
 # NOTE: B G R color
 
 # Start camera
 vid = cv2.VideoCapture(0)
 
-
-
-T_color = {
-    "Yellow" : (0,255,255),
-    "Red" : (0,0,255),
-    "White" : (255,255,255),
-    "Blue" : (255,0,0),
-    "Orange" : (0,165,255),
-    "Green" : (0,255,0)
-}
-
 # Create empty list
 rubik = []
 core = []
 
+
 for i in range(6):
-    while (1):
+    while True:
         # Read camera
         ret, frame = vid.read()
         # Draw rectangle on captured image
@@ -65,7 +54,7 @@ for i in range(6):
 
             # Close window
             cv2.imshow("camera", frame)
-            print(f"__ Face {i} done __")
+            print(f"__ Face {i+1} done __")
             break
 
 # Close window
@@ -74,20 +63,37 @@ cv2.destroyAllWindows()
 vid.release()
 
 # Color list of 54 squares
-print("Color list of 54 squares:")
+#print("Color list of 54 squares:")
 #print(rubik)
 # Color list of 6 faces
-print("Color list of 6 faces:")
+#print("Color list of 6 faces:")
 #print(core)
 
 
 # ------Compare color of each square to decide that is the color of which face-------------
+D_color = {
+    "White":core[0].tolist(),
+    "Red":core[1].tolist(),
+    "Green":core[2].tolist(),
+    "Yellow":core[3].tolist(),
+    "Orange":core[4].tolist(),
+    "Blue":core[5].tolist()
+}
 
-for color in core:
-    tabColor = []
-    for i in T_color:
-        tabColor.append(color[0]-T_color[i][0]+color[1]-T_color[i][1]+color[2]-T_color[i][2])
-        print(tabColor)
+def compare(color):
+    for i in core :
+        abs(core[i][0] - color[0]) + abs(core[i][1] - color[1]) + abs(core[i][2] - color[2])
 
 
+for i in rubik:
+    print( compare(i))
+
+"""
+up = white
+right = red
+face = green
+down = yellow 
+left = orange 
+back = blue 
+"""
 # ------Apply algorithm using data of the Rubik's cube above to get the solving moves--------
