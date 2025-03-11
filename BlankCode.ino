@@ -22,20 +22,28 @@ void ini() {
   Serv2b.write(xa2b);
   Serv3b.write(xa3b);
   Serv4b.write(xa4b);
-  delay(normal_time);
+  delay(200);
 
   // Attach the servo motors to their pins
   Serv1b.attach(pinServ1b);
   Serv2b.attach(pinServ2b);
   Serv3b.attach(pinServ3b);
   Serv4b.attach(pinServ4b);
+  delay(200);
 
   Serv1a.attach(pinServ1a);
+  delay(200);
   Serv2a.attach(pinServ2a);
+  delay(200);
   Serv3a.attach(pinServ3a);
+  delay(200);
   Serv4a.attach(pinServ4a);
+  delay(200);
 }
 
+
+
+/////////////////////////////////// Write your own functions ///////////////////////////////////
 void Start() {  // Grab the Rubik cube when type START
   Serv1b.write(gan1b);
   Serv2b.write(gan2b);
@@ -49,6 +57,9 @@ void End() {  // Release the Rubik cube when type END
   Serv3b.write(xa3b);
   Serv4b.write(xa4b);
 }
+/////////////////////////////////// Write your own functions ///////////////////////////////////
+
+
 
 void setup() {
   Serial.begin(9600);
@@ -58,7 +69,8 @@ void setup() {
   Serial.println("Type START to grab");
 }
 
-void loop(){
+
+void loop() {
   if (solved == false) {
     // wait for moves
     if (Serial.available() > 0) {
@@ -96,728 +108,690 @@ void loop(){
         /* OUTPUT: s (sequence of solve steps)*/
         trash = 0;
         while (trash < int(L / 2) + 1) {
+
+          /////////////////////////////////// Write your own code ///////////////////////////////////dung= vertical, ngnang = horizontal, gan =avancer, xa=reculer
           //FRONT
-          if (S[trash] == "F'") {  // Rotate Front counter-Clockwise
+          if (S[trash] == "F'") {  // Rotate Front Clockwise
             Serial.println("Got F'");
             Serv1a.write(ngang1a);
-            //one move
-            delay(time2); 
+            delay(172);
             Serv1b.write(xa1b);
-            delay(normal_time);
+            delay(200);
             Serv1a.write(dung1a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
-            delay(normal_time);
-           } 
-          else if (S[trash] == "F") {  // Rotate Front Clockwise
+            delay(50);
+          } else if (S[trash] == "F") {  // Rotate Front counter-Clockwise
             Serial.println("Got F");
             Serv1b.write(xa1b);
-            delay(normal_time);
+            delay(200);
             Serv1a.write(ngang1a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
-            //one move: come closer and rotate to vertical at the same time
-            delay(time2);
+            delay(250);
             Serv1a.write(dung1a);
-            delay(normal_time);
-          } 
-          else if (S[trash] == "F2") {
+            delay(200);
+          } else if (S[trash] == "F2") {
             Serial.println("Got F2");
-            Serv1b.write(xa1b);
-            delay(normal_time);
             Serv1a.write(ngang1a);
-            delay(normal_time);
-            Serv1b.write(gan1b);
-            //one move
-            delay(time2);
-            Serv1a.write(dung1a);
-            delay(normal_time);
-            
+            delay(152);
             Serv1b.write(xa1b);
-            delay(normal_time);
-            Serv1a.write(ngang1a);
-            delay(normal_time);
-            Serv1b.write(gan1b);
-            //one move
-            delay(time2);
+            delay(200);
             Serv1a.write(dung1a);
-            delay(normal_time);
-          }
-          else if (S[trash] == "F2'"){
+            delay(200);
+            Serv1b.write(gan1b);
+            delay(250);
+            Serv1a.write(ngang1a);
+            delay(152);
+            Serv1b.write(xa1b);
+            delay(200);
+            Serv1a.write(dung1a);
+            delay(200);
+            Serv1b.write(gan1b);
+            delay(1500);
+            ;
+          } else if (S[trash] == "F2'") {
             Serial.println("Got F2'");
             Serv1a.write(ngang1a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv1b.write(xa1b);
-            delay(normal_time);
+            delay(200);
             Serv1a.write(dung1a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
-            delay(normal_time);
-
+            delay(200);
             Serv1a.write(ngang1a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv1b.write(xa1b);
-            delay(normal_time);
+            delay(200);
             Serv1a.write(dung1a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
-            delay(normal_time);
+            delay(50);
           }
-
+          ///
           //RIGHT
-          ///dung= vertical, ngang = horizontal, gan =avancer, xa=reculer
-          else if (S[trash] == "R") {  
+          ///dung= vertical, ngnang = horizontal, gan =avancer, xa=reculer
+          else if (S[trash] == "R") {  // Rotate Front Clockwise
             Serial.println("Got R");
             Serv4a.write(ngang4a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv4b.write(gan4b);
-            delay(normal_time);
-          } 
-          else if (S[trash] == "R'") {  
+            delay(50);
+          } else if (S[trash] == "R'") {  // Rotate Front counter-Clockwise
             Serial.println("Got R'");
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv4a.write(ngang4a);
-            delay(normal_time);
+            delay(200);
             Serv4b.write(gan4b);
-            //one move
-            delay(time2);
+            delay(200);
             Serv4a.write(dung4a);
-            delay(normal_time);
-          } 
-          else if (S[trash] == "R2") {
+            delay(200);
+          } else if (S[trash] == "R2") {
             Serial.println("Got R2");
             Serv4a.write(ngang4a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv4b.write(gan4b);
-            delay(normal_time);
-
+            delay(200);
             Serv4a.write(ngang4a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv4b.write(gan4b);
-            delay(normal_time);
-          }
-          else if (S[trash] == "R2'"){
+            delay(50);
+          } else if (S[trash] == "R2'") {
             Serial.println("Got R2'");
-            Serv4b.write(xa4b);
-            delay(normal_time);
             Serv4a.write(ngang4a);
-            delay(normal_time);
-            Serv4b.write(gan4b);
-            //one move
-            delay(time2);
-            Serv4a.write(dung4a);
-            delay(normal_time);
-
+            delay(152);
             Serv4b.write(xa4b);
-            delay(normal_time);
-            Serv4a.write(ngang4a);
-            delay(normal_time);
-            Serv4b.write(gan4b);
-            //one move
-            delay(time2);
+            delay(200);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
+            Serv4b.write(gan4b);
+            delay(200);
+            Serv4a.write(ngang4a);
+            delay(152);
+            Serv4b.write(xa4b);
+            delay(200);
+            Serv4a.write(dung4a);
+            delay(200);
+            Serv4b.write(gan4b);
+            delay(50);
           }
-          
+          ///
           //BACK
           ///dung= vertical, ngnang = horizontal, gan =avancer, xa=reculer
-          else if (S[trash] == "B") {  
+          else if (S[trash] == "B") {  // Rotate Front Clockwise
             Serial.println("Got B");
             Serv2a.write(ngang2a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(200);
             Serv2a.write(dung2a);
-            delay(normal_time);
+            delay(200);
             Serv2b.write(gan2b);
-            delay(normal_time);
-          } 
-          else if (S[trash] == "B'") {  
+            delay(50);
+          } else if (S[trash] == "B'") {  // Rotate Front counter-Clockwise
             Serial.println("Got B'");
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(200);
             Serv2a.write(ngang2a);
-            delay(normal_time);
+            delay(200);
             Serv2b.write(gan2b);
-            //one move
-            delay(time2);
+            delay(200);
             Serv2a.write(dung2a);
-            delay(normal_time);
-          } 
-          else if (S[trash] == "B2") {
+            delay(200);
+          } else if (S[trash] == "B2") {
             Serial.println("Got B2");
             Serv2a.write(ngang2a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(200);
             Serv2a.write(dung2a);
-            delay(normal_time);
+            delay(200);
             Serv2b.write(gan2b);
-            delay(normal_time);
-
+            delay(200);
             Serv2a.write(ngang2a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(200);
             Serv2a.write(dung2a);
-            delay(normal_time);
+            delay(200);
             Serv2b.write(gan2b);
-            delay(normal_time);
-          }
-          else if (S[trash] == "B2'"){
+            delay(50);
+          } else if (S[trash] == "B2'") {  //Idea :  we can put the same code as B2 if the delay(152) is working
             Serial.println("Got B2'");
-            Serv2b.write(xa2b);
-            delay(normal_time);
             Serv2a.write(ngang2a);
-            delay(normal_time);
-            Serv2b.write(gan2b);
-            //one move
-            delay(time2);
-            Serv2a.write(dung2a);
-            delay(normal_time);
-
+            delay(152);
             Serv2b.write(xa2b);
-            delay(normal_time);
-            Serv2a.write(ngang2a);
-            delay(normal_time);
-            Serv2b.write(gan2b);
-            //one move
-            delay(time2);
+            delay(200);
             Serv2a.write(dung2a);
-            delay(normal_time);
+            delay(200);
+            Serv2b.write(gan2b);
+            delay(200);
+            Serv2a.write(ngang2a);
+            delay(152);
+            Serv2b.write(xa2b);
+            delay(200);
+            Serv2a.write(dung2a);
+            delay(200);
+            Serv2b.write(gan2b);
+            delay(50);
           }
-          
+          ///
           //LEFT
           ///dung= vertical, ngnang = horizontal, gan =avancer, xa=reculer
-          else if (S[trash] == "L'") {  
+          else if (S[trash] == "L'") {  // Rotate Front Clockwise
             Serial.println("Got L'");
             Serv3a.write(ngang3a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv3b.write(xa3b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
-            delay(normal_time);
-          } 
-          else if (S[trash] == "L") {  
+            delay(50);
+          } else if (S[trash] == "L") {  // Rotate Front counter-Clockwise
             Serial.println("Got L");
             Serv3b.write(xa3b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(ngang3a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
-            //one move
-            delay(time2);
+            delay(200);
             Serv3a.write(dung3a);
-            delay(normal_time);
-          } 
-          else if (S[trash] == "L2") {
-            Serv3b.write(xa3b);
-            delay(normal_time);
-            Serv3a.write(ngang3a);
-            delay(normal_time);
-            Serv3b.write(gan3b);
-            //one move
-            delay(time2);
-            Serv3a.write(dung3a);
-            delay(normal_time);
-            
-            Serv3b.write(xa3b);
-            delay(normal_time);
-            Serv3a.write(ngang3a);
-            delay(normal_time);
-            Serv3b.write(gan3b);
-            //one move
-            delay(time2);
-            Serv3a.write(dung3a);
-            delay(normal_time);
-          }
-          else if (S[trash] == "L2'"){
+            delay(200);
+          } else if (S[trash] == "L2") {  // same code as L2' if it's faster
             Serial.println("Got L2'");
             Serv3a.write(ngang3a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv3b.write(xa3b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan1b);
-            delay(normal_time);
-
+            delay(200);
             Serv3a.write(ngang3a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv3b.write(xa3b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
-            delay(normal_time);
+            delay(50);
+          } else if (S[trash] == "L2'") {
+            Serial.println("Got L2'");
+            Serv3a.write(ngang3a);
+            delay(152);
+            Serv3b.write(xa3b);
+            delay(200);
+            Serv3a.write(dung3a);
+            delay(200);
+            Serv3b.write(gan1b);
+            delay(200);
+            Serv3a.write(ngang3a);
+            delay(152);
+            Serv3b.write(xa3b);
+            delay(200);
+            Serv3a.write(dung3a);
+            delay(200);
+            Serv3b.write(gan3b);
+            delay(50);
           }
-          
+          ///
           //UP
           ///dung= vertical, ngnang = horizontal, gan =avancer, xa=reculer
           else if (S[trash] == "U") {
             Serial.println("Got U");
             Serv1b.write(xa1b);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(201);
+            //3,4 rotate -> up side will face 2
             Serv4a.write(ngang4a);
             Serv3a.write(ngang3a);
-            delay(normal_time);
+            delay(200);
+            //1,2 move forward to hold
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            //4 servos move at the same time
-            delay(time1);
+            delay(31);  //it can faster
+            //3,4 move backward to change to vertical then move forward
             Serv4b.write(xa4b);
             Serv3b.write(xa3b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            delay(normal_time);
+            delay(197);
+            //2 will rotate the up side
             Serv2a.write(ngang2a);
-            //one move
-            delay(time2);
+            delay(152);
+            //2 move backward & rotate to vertical
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(200);
             Serv2a.write(dung2a);
-            delay(normal_time);
+            delay(200);
+            //2 move forward to hold
             Serv2b.write(gan2b);
-            //3 servos move at the same time
-            delay(time1);
+            delay(199);  //prise 3-1 ou 2-1 ?
+            //3,4 move backward & rotate to horizontal & move forward
             Serv3b.write(xa3b);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(ngang3a);
             Serv4a.write(ngang4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            //4 servos move at the same time (not sure if 3,4 can catch rubik on time bc theyre horizontal)
-            delay(time1);
+            delay(100);
+            //1,2 move backward
             Serv1b.write(xa1b);
-            Serv2b.write(xa1b);
-            delay(normal_time);
+            Serv2b.write(xa2b);
+            delay(200);
+            //3,4 rotate the rubik
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
+            //1,2 move forward to hold
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            delay(normal_time);
-          } 
-          else if (S[trash] == "U'") {
+            delay(50);
+          } else if (S[trash] == "U'") {
             Serial.println("Got U'");
+            //1,2 move backward
             Serv1b.write(xa1b);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(201);
+            //3,4 rotate -> up side will face 2
             Serv4a.write(ngang4a);
             Serv3a.write(ngang3a);
-            delay(normal_time);
+            delay(200);
+            //1,2 move forward to hold
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            //4 servos move at the same time
-            delay(time1);
+            delay(31);
+            //3,4 move backward to change to vertical then move forward
             Serv4b.write(xa4b);
             Serv3b.write(xa3b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            delay(normal_time);
+            delay(199);  /// prise 3-1
+            //2 will rotate the up side
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(200);
             Serv2a.write(ngang2a);
-            delay(normal_time);
+            delay(200);
             Serv2b.write(gan2b);
-            //one move
-            delay(time2);
+            delay(200);
             Serv2a.write(dung2a);
-            delay(normal_time);
+            delay(200);
+            //3,4 move backward & rotate to horizontal & move forward
             Serv3b.write(xa3b);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(ngang3a);
             Serv4a.write(ngang4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            //4 servos move at the same time (not sure if 3,4 can catch rubik on time bc theyre horizontal)
-            delay(time1);
+            delay(200);
+            //1,2 move backward
             Serv1b.write(xa1b);
             Serv2b.write(xa1b);
-            delay(normal_time);
+            delay(200);
+            //3,4 rotate the rubik
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
+            //1,2 move forward to hold
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            delay(normal_time);
-          } 
-          else if (S[trash] == "U2"){
+            delay(50);
+          } else if (S[trash] == "U2") {
             Serial.println("Got U2");
             Serv1b.write(xa1b);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(201);
+            //3,4 rotate -> up side will face 2
             Serv4a.write(ngang4a);
             Serv3a.write(ngang3a);
-            delay(normal_time);
+            delay(200);
+            //1,2 move forward to hold
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            //4 servos move at the same time
-            delay(time1);
+            delay(31);
+            //3,4 move backward to change to vertical then move forward
             Serv4b.write(xa4b);
             Serv3b.write(xa3b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            delay(normal_time);
+            delay(197);
+            //2 will rotate the up side TWICE
             Serv2a.write(ngang2a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(200);
             Serv2a.write(dung2a);
-            delay(normal_time);
+            delay(200);
             Serv2b.write(gan2b);
-            delay(normal_time);
+            delay(200);
             Serv2a.write(ngang2a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(200);
             Serv2a.write(dung2a);
-            delay(normal_time);
+            delay(200);
             Serv2b.write(gan2b);
-            //3 servos move at the same time
-            delay(time1);
+            delay(199);  //prise 3-1 ou 2-1 ?
+            //3,4 move backward & rotate to horizontal & move forward
             Serv3b.write(xa3b);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(ngang3a);
             Serv4a.write(ngang4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            //4 servos move at the same time (not sure if 3,4 can catch rubik on time bc theyre horizontal)
-            delay(time1);
+            delay(100);
+            //1,2 move backward
             Serv1b.write(xa1b);
             Serv2b.write(xa1b);
-            delay(normal_time);
+            delay(200);
+            //3,4 rotate the rubik
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
+            //1,2 move forward to hold
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            delay(normal_time);
-          }
-          else if (S[trash] == "U2'") {
+            delay(50);
+          } else if (S[trash] == "U2'") {
             Serial.println("Got U2'");
             Serv1b.write(xa1b);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(201);
+            //3,4 rotate -> up side will face 2
             Serv4a.write(ngang4a);
             Serv3a.write(ngang3a);
-            delay(normal_time);
+            delay(150);
+            //1,2 move forward to hold
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            //4 servos move at the same time
-            delay(time1);
+            delay(31);
+            //3,4 move backward to change to vertical then move forward
             Serv4b.write(xa4b);
             Serv3b.write(xa3b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            delay(normal_time);
-            Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(197);
+            //2 will rotate the up side TWICE
             Serv2a.write(ngang2a);
-            delay(normal_time);
-            Serv2b.write(gan2b);
-            //one move
-            delay(time2);
-            Serv2a.write(dung2a);
-            delay(normal_time);
+            delay(152);
             Serv2b.write(xa2b);
-            delay(normal_time);
-            Serv2a.write(ngang2a);
-            delay(normal_time);
-            Serv2b.write(gan2b);
-            //one move
-            delay(time2);
+            delay(200);
             Serv2a.write(dung2a);
+            delay(200);
+            Serv2b.write(gan2b);
+            delay(200);
+            Serv2a.write(ngang2a);
+            delay(152);
+            Serv2b.write(xa2b);
+            delay(200);
+            Serv2a.write(dung2a);
+            delay(200);
+            Serv2b.write(gan2b);
+            delay(199);  //prise 3-1 ou 2-1 ?
+            //3,4 move backward & rotate to horizontal & move forward
             Serv3b.write(xa3b);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(ngang3a);
             Serv4a.write(ngang4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            //4 servos move at the same time (not sure if 3,4 can catch rubik on time bc theyre horizontal)
-            delay(time1);
+            delay(100);
+            //1,2 move backward
             Serv1b.write(xa1b);
             Serv2b.write(xa1b);
-            delay(normal_time);
+            delay(200);
+            //3,4 rotate the rubik
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
+            //1,2 move forward to hold
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            delay(normal_time);
+            delay(50);
           }
-          
+          ///
           //DOWN
+          ///
           else if (S[trash] == "D") {
             Serial.println("Got D");
             Serv1b.write(xa1b);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(201);  //maybe it'll work
             Serv3a.write(ngang3a);
             Serv4a.write(ngang4a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            //4 servos move
-            delay(time1);
+            delay(31);
             Serv3b.write(xa3b);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            delay(normal_time);
+            delay(199);  /// prise 3-1
             Serv1b.write(xa1b);
-            delay(normal_time);
+            delay(200);
             Serv1a.write(ngang1a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
-            //one move
-            delay(time2);
+            delay(200);
             Serv1a.write(dung1a);
-            delay(normal_time);
+            delay(199);  // prise 3-1 ou 2-1 ?
             Serv3b.write(xa3b);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(ngang3a);
             Serv4a.write(ngang4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            //4 servos (not sure if 3,4 can catch rubik on time bc theyre horizontal)
-            delay(time1);
+            delay(100);
             Serv1b.write(xa1b);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            delay(normal_time);
-          } 
-          else if (S[trash] == "D2") {
+            delay(50);
+          } else if (S[trash] == "D2") {
             Serial.println("Got D2");
             Serv1b.write(xa1b);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(201);
             Serv3a.write(ngang3a);
             Serv4a.write(ngang4a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            //4 servos move
-            delay(time1);
+            delay(31);
             Serv3b.write(xa3b);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            delay(normal_time);
-            Serv1b.write(xa1b);
-            delay(normal_time);
+            delay(197);
             Serv1a.write(ngang1a);
-            delay(normal_time);
-            Serv1b.write(gan1b);
-            //one move
-            delay(time2);
-            Serv1a.write(dung1a);
-            delay(normal_time);
+            delay(152);
             Serv1b.write(xa1b);
-            delay(normal_time);
-            Serv1a.write(ngang1a);
-            delay(normal_time);
-            Serv1b.write(gan1b);
-            delay(normal_time);
+            delay(200);
             Serv1a.write(dung1a);
-            delay(normal_time);
+            delay(200);
+            Serv1b.write(gan1b);
+            delay(200);
+            Serv1a.write(ngang1a);
+            delay(152);
+            Serv1b.write(xa1b);
+            delay(200);
+            Serv1a.write(dung1a);
+            delay(200);
+            Serv1b.write(gan1b);
+            delay(199);
             Serv3b.write(xa3b);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(ngang3a);
             Serv4a.write(ngang4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            //4 servos (not sure if 3,4 can catch rubik on time bc theyre horizontal)
-            delay(time1);
+            delay(100);
             Serv1b.write(xa1b);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            delay(normal_time);
-          }
-          else if (S[trash] == "D'"){
+            delay(50);
+          } else if (S[trash] == "D'") {
             Serial.println("Got D'");
             Serv1b.write(xa1b);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(201);
             Serv3a.write(ngang3a);
             Serv4a.write(ngang4a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            //4 servos move
-            delay(time1);
+            delay(31);
             Serv3b.write(xa3b);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            delay(normal_time);
+            delay(197);
             Serv1a.write(ngang1a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv1b.write(xa1b);
-            delay(normal_time);
+            delay(200);
             Serv1a.write(dung1a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
-            
+            delay(199);
             Serv3b.write(xa3b);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);  //maybe we can change
             Serv3a.write(ngang3a);
             Serv4a.write(ngang4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            //4 servos (not sure if 3,4 can catch rubik on time bc theyre horizontal)
-            delay(time1);
+            delay(100);  // dangereux horizontale
             Serv1b.write(xa1b);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            delay(normal_time);
-          }
-          else if (S[trash] == "D2'"){
+            delay(50);
+          } else if (S[trash] == "D2'") {
             Serial.println("Got D2'");
             Serv1b.write(xa1b);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(201);
             Serv3a.write(ngang3a);
             Serv4a.write(ngang4a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            //4 servos move
-            delay(time1);
+            delay(31);
             Serv3b.write(xa3b);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            delay(normal_time);
+            delay(197);
             Serv1a.write(ngang1a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv1b.write(xa1b);
-            delay(normal_time);
+            delay(200);
             Serv1a.write(dung1a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
-            delay(normal_time);
+            delay(200);
             Serv1a.write(ngang1a);
-            //one move
-            delay(time2);
+            delay(152);
             Serv1b.write(xa1b);
-            delay(normal_time);
+            delay(200);
             Serv1a.write(dung1a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
-            delay(normal_time);
+            delay(199);
             Serv3b.write(xa3b);
             Serv4b.write(xa4b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(ngang3a);
             Serv4a.write(ngang4a);
-            delay(normal_time);
+            delay(200);
             Serv3b.write(gan3b);
             Serv4b.write(gan4b);
-            //4 servos (not sure if 3,4 can catch rubik on time bc theyre horizontal)
-            delay(time1);
+            delay(100);  //dangereux
             Serv1b.write(xa1b);
             Serv2b.write(xa2b);
-            delay(normal_time);
+            delay(200);
             Serv3a.write(dung3a);
             Serv4a.write(dung4a);
-            delay(normal_time);
+            delay(200);
             Serv1b.write(gan1b);
             Serv2b.write(gan2b);
-            delay(normal_time);
-           }
+            delay(50);
+          }
 
           /////////////////////////////////// Write your own code ///////////////////////////////////
           Serial.print(S[trash]);
